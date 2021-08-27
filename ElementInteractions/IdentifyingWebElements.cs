@@ -33,6 +33,7 @@ namespace ElementInteractions
         {
             Driver.Navigate().GoToUrl("https://www.ultimateqa.com/simple-html-elements-for-automation/");
             HighlightElementUsingJavaScript(By.ClassName("buttonClass"));
+            Driver.FindElement(By.ClassName("buttonClass")).Click();
             HighlightElementUsingJavaScript(By.Id("idExample"));
             HighlightElementUsingJavaScript(By.LinkText("Click me using this link text!"));
             HighlightElementUsingJavaScript(By.Name("button1"));
@@ -54,6 +55,7 @@ namespace ElementInteractions
             var link = Driver.FindElements(By.ClassName("et_pb_blurb_description"))[4];
             //HighlightElementUsingJavaScript(By.ClassName("et_pb_blurb_description"));
             HighlightElementUsingJavaScript(By.Id("simpleElementsLink"));
+
             HighlightElementUsingJavaScript(By.LinkText("Click this link"));
             HighlightElementUsingJavaScript(By.Name("clickableLink"));
             HighlightElementUsingJavaScript(By.PartialLinkText("Click this lin"));
@@ -103,9 +105,9 @@ namespace ElementInteractions
             //open Tab2 and assert that it is opened. Hint, use .Text property when you find the element
             Driver.FindElement(By.XPath("//li[@class='et_pb_tab_1']")).Click();
             WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(3));
-            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@class='et_pb_tab et_pb_tab_1 clearfix et-pb-active-slide']")));
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@class='et_pb_tab et_pb_tab_1 clearfix']")));
             Assert.AreEqual("Tab 2 content", 
-                Driver.FindElement(By.XPath("//*[@class='et_pb_tab et_pb_tab_1 clearfix et-pb-active-slide']")).Text);
+                Driver.FindElement(By.XPath("//*[@class='et_pb_tab et_pb_tab_1 clearfix']")).Text);
             //in the HTML Table with id, highlight one of the salary cells
             HighlightElementUsingJavaScript(By.XPath("//td[contains(text(),'$150,000+')]"));
 
@@ -113,7 +115,39 @@ namespace ElementInteractions
             //highlight the highest level div for that element. The top parent div.
             //Hint, this is the class - 
             //et_pb_column et_pb_column_1_3  et_pb_column_10 et_pb_css_mix_blend_mode_passthrough
-            HighlightElementUsingJavaScript(By.XPath("//*[@class='et_pb_column et_pb_column_1_3 et_pb_column_10  et_pb_css_mix_blend_mode_passthrough']"));    
+            HighlightElementUsingJavaScript(By.XPath("//*[@class='et_pb_column et_pb_column_1_3 et_pb_column_10  et_pb_css_mix_blend_mode_passthrough']"));
+
+            
+        }
+
+        // //h2[contains(text(),'HTML Table with no id')]/following-sibling::table//td[contains(text(),"$120,000")]
+        [TestMethod]
+        public void FindSalaryByTextTest()
+        {
+            Driver.Navigate().GoToUrl("https://ultimateqa.com/simple-html-elements-for-automation/");
+            Assert.IsTrue(Driver.FindElement(By.XPath("//h2[contains(text(),'HTML Table with no id')]/following-sibling::table//td[contains(text(),'$120,000')]")).Displayed);
+        }
+
+        [TestMethod]
+        public void FindSalaryWithColumnLabelTest()
+        {
+            Driver.Navigate().GoToUrl("https://ultimateqa.com/simple-html-elements-for-automation/");
+            Assert.IsTrue(Driver.FindElement(By.XPath("//table[@id='htmlTableId']//tr//td[contains(text(),'Automation Testing Architect')]/following-sibling::td[contains(text(),'$120,000+')]")).Displayed);
+        }
+
+        [TestMethod]
+        public void ConfirmButton1HeaderContentTest()
+        {
+            Driver.Navigate().GoToUrl("https://ultimateqa.com/simple-html-elements-for-automation/");
+            Assert.IsTrue(Driver.FindElement(By.XPath("//button[@id='button1']/../preceding-sibling::h3[contains(text(),'Feel free to practice your test automation on these elements')]")).Displayed);
+            // Assert.IsTrue(_driver.FindElement(By.XPath("//button[text()='Click Me!']/ancestor::form/preceding-sibling::h3")).Text.Contains("Feel free to practice your test automation on these elements"));
+        }
+
+        [TestMethod]
+        public void ConfirmLastRowQAEngineerTest()
+        {
+            Driver.Navigate().GoToUrl("https://ultimateqa.com/simple-html-elements-for-automation/");
+            Assert.IsTrue(Driver.FindElement(By.XPath("//table[@id='htmlTableId']//tr[last()]//td[contains(text(),'Quality Assurance Engineer')]")).Displayed);
         }
     }
 }
