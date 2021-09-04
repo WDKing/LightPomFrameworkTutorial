@@ -70,10 +70,38 @@ namespace WebdriverTimeoutsTutorial
             var wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(5));
             wait.Until(ExpectedConditions.ElementToBeClickable(ElementToWaitFor)).Click();
         }
+
+
         //Quiz
         //1. open page
         //2. synchronize on slowest loading element
         //3. proceed with actions
+        [TestMethod]
+        public void HowToCorrectlySynchronizeQuiz()
+        {
+            // Setup WebDriverWait
+            var wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
+            
+            // Open Page
+            _driver.Navigate().GoToUrl(URL.UltimateQA);
+            _driver.Manage().Window.Maximize();
+
+            // Wait for Synchronization Element & Click on Automation Exercises
+            wait.Until(ExpectedConditions.ElementExists(By.XPath("//a[@href='https://ultimateqa.com/automation/'][contains(text(),'Automation Exercises')]"))).Click();
+
+            // Wait for Synchronization & Click on 'Big Page With Many Elements'
+            wait.Until(ExpectedConditions.ElementExists(By.XPath("//a[@href='../complicated-page'][contains(text(),'Big page with many elements')]"))).Click();
+
+            // Confirm Page load
+            wait.Until(ExpectedConditions.ElementExists(By.XPath("//link[@href='https://ultimateqa.com/wp-content/uploads/2016/04/QALOGO-150x150.png']")));
+
+        }
+
+
+
+
+
+
         [TestMethod]
         public void HowToCorrectlySynchronize()
         {
