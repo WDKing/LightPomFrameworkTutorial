@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2024
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31515.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElementInteractions", "ElementInteractions\ElementInteractions.csproj", "{B04B48B4-C824-4652-8CB7-67C898928BA4}"
 EndProject
@@ -25,7 +25,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SauceLabs", "SauceLabs\Sauc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsharpPractice", "CsharpPractice\CsharpPractice.csproj", "{F9838DF8-AD1A-4D43-9F91-D069C59243ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PageObjects", "PageObjects\PageObjects.csproj", "{D4A653C5-4517-4C39-9381-B4122147461F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PageObjects", "PageObjects\PageObjects.csproj", "{D4A653C5-4517-4C39-9381-B4122147461F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserInteractionsDemo", "UserInteractionsdemo\UserInteractionsDemo.csproj", "{5BC98270-5B56-44D3-A165-AC2843552AC8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +83,10 @@ Global
 		{D4A653C5-4517-4C39-9381-B4122147461F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4A653C5-4517-4C39-9381-B4122147461F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D4A653C5-4517-4C39-9381-B4122147461F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BC98270-5B56-44D3-A165-AC2843552AC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BC98270-5B56-44D3-A165-AC2843552AC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BC98270-5B56-44D3-A165-AC2843552AC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BC98270-5B56-44D3-A165-AC2843552AC8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
