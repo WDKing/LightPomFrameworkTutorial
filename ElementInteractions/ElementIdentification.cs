@@ -157,26 +157,7 @@ namespace ElementInteractions
             Assert.AreEqual("button", element.TagName);
             Assert.AreEqual(21, element.Size.Height);
             Assert.AreEqual(341, element.Location.X);
-            Assert.AreEqual(149, element.Location.Y);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            Assert.AreEqual(169, element.Location.Y);
 
             /*
             var myElement = _driver.FindElement(By.Id("button1"));
