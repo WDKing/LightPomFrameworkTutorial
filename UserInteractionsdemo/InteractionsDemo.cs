@@ -68,5 +68,10 @@ namespace UserInteractionsDemo
 
             Assert.AreEqual("Dropped!", targetElement.Text);
         }
+
+        [Test]
+        public void DragDropQuiz()
+        {
+        }
     }
 }
