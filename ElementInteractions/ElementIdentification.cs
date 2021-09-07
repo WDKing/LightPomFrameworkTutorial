@@ -66,10 +66,10 @@ namespace ElementInteractions
             //find the name field
 
             var nameField = _driver.FindElement(By.Id("et_pb_contact_name_1"));
-            nameField.Clear();
-            nameField.SendKeys("test");
             //clear the field
+            nameField.Clear();
             //type into the field
+            nameField.SendKeys("test");
 
             //find the text field
             var textBox = _driver.FindElement(By.Id("et_pb_contact_message_1"));
@@ -147,10 +147,19 @@ namespace ElementInteractions
             //9. Assert that the size height is 21
             //10. Assert that the location is x=341, y=249
 
+            var element = _driver.FindElement(By.XPath("//button[@id='button1'][@type='submit'][contains(text(),'Click Me!')]"));
+            Assert.AreEqual("submit", element.GetAttribute("type"));
+            Assert.AreEqual("normal", element.GetCssValue("letter-spacing"));
+            Assert.IsTrue(element.Displayed);
+            Assert.IsTrue(element.Enabled);
+            Assert.IsFalse(element.Selected);
+            Assert.AreEqual("Click Me!", element.Text);
+            Assert.AreEqual("button", element.TagName);
+            Assert.AreEqual(21, element.Size.Height);
+            Assert.AreEqual(341, element.Location.X);
+            Assert.AreEqual(169, element.Location.Y);
 
-
-
-
+            /*
             var myElement = _driver.FindElement(By.Id("button1"));
             Assert.AreEqual("submit", myElement.GetAttribute("type"));
             Assert.AreEqual("normal", myElement.GetCssValue("letter-spacing"));
@@ -162,11 +171,93 @@ namespace ElementInteractions
             Assert.AreEqual(21, myElement.Size.Height);
             Assert.AreEqual(341, myElement.Location.X);
             Assert.AreEqual(249, myElement.Location.Y);
+            */
         }
 
 
 
+        [TestMethod]
+        [TestCategory("ElementManipulationQuiz")]
+        public void QuizOnElementManipulation()
+        {
+            
+            _driver.Navigate().GoToUrl("https://www.ultimateqa.com/filling-out-forms/");
 
+            var nameField = _driver.FindElement(By.Id("et_pb_contact_name_1"));
+
+            //clear the field
+            nameField.Clear();
+
+            //type into the field
+            nameField.SendKeys("test");
+
+            //find the text field
+            var textBox = _driver.FindElement(By.Id("et_pb_contact_message_1"));
+
+            //clear the field
+            textBox.Clear();
+
+            //type into the field
+            textBox.SendKeys("testing");
+
+            /*
+            // From http://amritupadhyay.blogspot.com/p/page-43-how-to-solve-math-captcha-in.html
+            // get Math question  
+            string mathquestionvalue = _driver.FindElement(By.XPath("//span[@class='et_pb_contact_captcha_question']")).Text.Trim();
+            // remove space if exist  
+            string removespace = mathquestionvalue.Replace("\\s+", "");
+            // get two numbers   
+            string[] parts = removespace.Split('+');//  '\\+');
+            string part1 = parts[0];
+            string part2 = parts[1];
+            string[] parts1 = part2.Split('=');
+            string part11 = parts1[0];
+            // sum two numbers  
+            int summation = Int32.Parse(part1) + Int32.Parse(part11);//   ParseInt(part1); // Integer.parseInt(part1) + Integer.parseInt(part2);//+ Integer.parseInt(part11);
+            // Math Capcha value  
+            var captcha = _driver.FindElement(By.XPath("//input[@class='input et_pb_contact_captcha']"));
+            captcha.Clear();
+            captcha.SendKeys("" + summation);
+            */
+
+            var captcha = _driver.FindElement(By.ClassName("et_pb_contact_captcha_question"));
+            //show example of how this will work in Chrome dev tools but not in code
+            var table = new DataTable();
+            var captchaAnswer = (int)table.Compute(captcha.Text, "");
+
+            var captchaTextBox = _driver.FindElement(By.XPath("//*[@class='input et_pb_contact_captcha']"));
+            captchaTextBox.SendKeys(captchaAnswer.ToString());
+
+            //submit
+            var submitButton = _driver.FindElement(By.XPath("//button[@name='et_builder_submit_button']/../div[@class='et_pb_contact_right']"));
+            submitButton.Submit();
+           
+            // Second Run Through
+            //show example of how this will work in Chrome dev tools but not in code
+            table = new DataTable();
+            captchaAnswer = (int)table.Compute(captcha.Text, "");
+
+            captchaTextBox = _driver.FindElement(By.XPath("//*[@class='input et_pb_contact_captcha']"));
+            captchaTextBox.SendKeys(captchaAnswer.ToString());
+
+            //submit
+            submitButton = _driver.FindElement(By.XPath("//button[@name='et_builder_submit_button']/../div[@class='et_pb_contact_right']"));
+            submitButton.Submit();
+
+
+            // Third Run Through
+            //show example of how this will work in Chrome dev tools but not in code
+            table = new DataTable();
+            captchaAnswer = (int)table.Compute(captcha.Text, "");
+
+            captchaTextBox = _driver.FindElement(By.XPath("//*[@class='input et_pb_contact_captcha']"));
+            captchaTextBox.SendKeys(captchaAnswer.ToString());
+
+            //submit
+            submitButton = _driver.FindElement(By.XPath("//button[@name='et_builder_submit_button']/../div[@class='et_pb_contact_right']"));
+            submitButton.Submit();
+        }
+    
 
     }
 }
