@@ -41,7 +41,7 @@ namespace UserInteractionsdemo
 
             wait.Until(ExpectedConditions.ElementToBeClickable(sourceElement));
 
-            var jsFile = File.ReadAllText(@"C:\creations\tutorials\LightPomFrameworkTutorial\UserInteractionsdemo\drag_and_drop_helper.js");
+            var jsFile = File.ReadAllText(@"C:\Source\LightPomFrameworkTutorial\UserInteractionsdemo\drag_and_drop_helper.js");
             IJavaScriptExecutor js = driver as IJavaScriptExecutor;
             js.ExecuteScript(jsFile + "$('#column-a').simulateDragDrop({dropTarget: '#column-b'});"); 
 

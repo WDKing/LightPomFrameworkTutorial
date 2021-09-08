@@ -61,6 +61,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DrawOnCanvasQuiz.cs" />
     <Compile Include="DragAndDropHtml5Quiz.cs" />
     <Compile Include="ResizingExamples.cs" />
     <Compile Include="InteractionsDemo.cs" />
