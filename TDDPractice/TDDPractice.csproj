@@ -90,11 +90,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AmazonSearchPage.cs" />
-    <Compile Include="AutomationQuiz.cs" />
-    <Compile Include="AutomationQuizPage.cs" />
-    <Compile Include="AutomationQuizComplicatedPage.cs" />
-    <Compile Include="AutomationQuizBasePage.cs" />
-    <Compile Include="AutomationQuizSearchPage.cs" />
+    <Compile Include="Initial Attempt\AutomationQuiz.cs" />
+    <Compile Include="Initial Attempt\AutomationQuizPage.cs" />
+    <Compile Include="Initial Attempt\AutomationQuizComplicatedPage.cs" />
+    <Compile Include="Initial Attempt\AutomationQuizBasePage.cs" />
+    <Compile Include="Initial Attempt\AutomationQuizSearchPage.cs" />
     <Compile Include="ComplicatedPage.cs" />
     <Compile Include="ComplicatedPageTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
