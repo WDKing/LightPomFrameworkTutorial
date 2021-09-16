@@ -9,27 +9,19 @@ using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 namespace SampleFramework1.Self_Dev
 {
-
-
-    class UltimateQAPage
+    class UltimateQAPage : WebsiteBasePage
     {
-        private IWebDriver driver;
-        private WebDriverWait wait;
-
-        public UltimateQAPage(IWebDriver driver, WebDriverWait wait) {
-            this.driver = driver;
-            this.wait = wait;
-        }
+        public UltimateQAPage(IWebDriver driver, WebDriverWait wait) : base(driver, wait) { }
 
         public bool IsLoaded()
         {
-            wait.Until(ExpectedConditions.ElementExists(By.Id("main-content"))); 
+            Wait.Until(ExpectedConditions.ElementExists(By.Id("main-content"))); 
             return true;
         }
 
         public string GetUrl()
         {
-            return driver.Url;
+            return Driver.Url;
         }
     }
 }

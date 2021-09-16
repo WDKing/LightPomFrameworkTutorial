@@ -6,38 +6,45 @@ using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 namespace SampleFramework1
 {
-    internal class AppLifecyclePage
+    internal class AppLifecyclePage : WebsiteBasePage
     {
-        private IWebDriver driver;
-        private WebDriverWait wait;
-        private string URL = "https://ultimateqa.com/sample-application-lifecycle-sprint-1/";
+        private string URL => "https://ultimateqa.com/sample-application-lifecycle-sprint-1/";
+        public IWebElement FirstNameField => Driver.FindElement(By.XPath("//input[@name='firstname']"));
+        public IWebElement SubmitFormButton => Driver.FindElement(By.Id("submitForm"));
 
-        public AppLifecyclePage(IWebDriver driver, WebDriverWait wait)
-        {
-            this.driver = driver;
-            this.wait = wait;
-        }
+        public AppLifecyclePage(IWebDriver driver, WebDriverWait wait) : base(driver, wait) { }
 
         internal void Open()
         {
-            driver.Navigate().GoToUrl(URL);
+            Driver.Navigate().GoToUrl(URL);
         }
+
+        /*
+        public bool IsVisible
+        {
+            get
+            {
+                return driver.Title.Equals("Sample Application Lifecycle - Sprint 1 - Ultimate QA");
+            }
+            internal set { }
+        }
+        */ 
 
         internal bool IsNameFieldLoaded()
         {
-            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//input[@name='firstname']")));
+            Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//input[@name='firstname']")));
             return true;
         }
 
         internal void FillOutForm(string name)
         {
-            driver.FindElement(By.XPath("//input[@name='firstname']")).SendKeys(name);
+            FirstNameField.SendKeys(name);
         }
 
         internal UltimateQAPage ClickSubmit()
         {
-            driver.FindElement(By.Id("submitForm")).Click();
-            return new UltimateQAPage(driver, wait);
+            SubmitFormButton.Click();
+            return new UltimateQAPage(Driver, Wait);
         }
     }
 }

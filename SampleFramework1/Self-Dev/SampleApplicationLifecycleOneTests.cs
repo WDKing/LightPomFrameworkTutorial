@@ -13,7 +13,7 @@ namespace SampleFramework1
 {
     [TestClass]
     [TestCategory("SampleApplicationLifecycle1")]
-    public class SampleApplicationLifecycleOne
+    public class SampleApplicationLifecycleOneTests
     {
         private IWebDriver driver;
         private Actions actions;
