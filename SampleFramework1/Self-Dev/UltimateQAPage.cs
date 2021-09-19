@@ -15,7 +15,7 @@ namespace SampleFramework1.Self_Dev
 
         public bool IsLoaded()
         {
-            Wait.Until(ExpectedConditions.ElementExists(By.Id("main-content"))); 
+            Wait.Until(ExpectedConditions.ElementExists(By.XPath("//input[@type='text'][@name='s']"))); 
             return true;
         }
 

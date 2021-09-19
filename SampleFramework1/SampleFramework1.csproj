@@ -91,8 +91,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Self-Dev\AppLifecyclePage.cs" />
+    <Compile Include="Self-Dev\User.cs" />
     <Compile Include="Self-Dev\UltimateQAPage.cs" />
-    <Compile Include="Self-Dev\SampleApplicationLifecycleOneTests.cs" />
+    <Compile Include="Self-Dev\SampleApplicationLifecycleTests.cs" />
     <Compile Include="Self-Dev\WebsiteBasePage.cs" />
     <Compile Include="Teacher-Work\BaseSampleApplicationPage.cs" />
     <Compile Include="Teacher-Work\Gender.cs" />

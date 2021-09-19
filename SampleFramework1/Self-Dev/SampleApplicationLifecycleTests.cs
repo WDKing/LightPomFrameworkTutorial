@@ -12,8 +12,8 @@ using System.Threading.Tasks;
 namespace SampleFramework1
 {
     [TestClass]
-    [TestCategory("SampleApplicationLifecycle1")]
-    public class SampleApplicationLifecycleOneTests
+    [TestCategory("SampleApplicationLifecycleTests")]
+    public class SampleApplicationLifecycleTests
     {
         private IWebDriver driver;
         private Actions actions;
@@ -35,21 +35,19 @@ namespace SampleFramework1
         }
 
         [TestMethod]
-        public void SAL1_Test1()
+        public void SAL_Test()
         {
             var appLifecyclePage = new AppLifecyclePage(driver, wait);
             appLifecyclePage.Open();
 
-            Assert.IsTrue(appLifecyclePage.IsNameFieldLoaded());
+            Assert.IsTrue(appLifecyclePage.IsFirstNameFieldLoaded(), "First Name Field is Not Loaded");
 
-            var name = "Zeus";
+            var user = new User("Zeus", "God of Greece");
 
-            appLifecyclePage.FillOutForm(name);
+            appLifecyclePage.FillOutNameFields(user);
             var ultimateQAPage = appLifecyclePage.ClickSubmit();
 
-            Assert.IsTrue(ultimateQAPage.IsLoaded());
-
-            Assert.AreEqual("https://ultimateqa.com/?firstname=" + name, ultimateQAPage.GetUrl());
+            Assert.IsTrue(ultimateQAPage.IsLoaded(), "UltimateQA Page is not Loaded");
         }
     }
 }
