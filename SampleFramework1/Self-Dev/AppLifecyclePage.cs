@@ -8,9 +8,10 @@ namespace SampleFramework1
 {
     internal class AppLifecyclePage : WebsiteBasePage
     {
-        private string URL => "https://ultimateqa.com/sample-application-lifecycle-sprint-2/";
+        private string URL => "https://ultimateqa.com/sample-application-lifecycle-sprint-3/";
         public IWebElement FirstNameField => Driver.FindElement(By.XPath("//input[@name='firstname']"));
         public IWebElement LastNameField => Driver.FindElement(By.XPath("//input[@name='lastname']"));
+        public IWebElement GenderField;
         public IWebElement SubmitFormButton => Driver.FindElement(By.XPath("//input[@type='submit']"));
 
         public AppLifecyclePage(IWebDriver driver, WebDriverWait wait) : base(driver, wait) { }
@@ -37,10 +38,13 @@ namespace SampleFramework1
             return true;
         }
 
-        internal void FillOutNameFields(User user)
+        internal void FillOutUserFields(User user)
         {
             FirstNameField.SendKeys(user.FirstName);
             LastNameField.SendKeys(user.LastName);
+
+            GenderField = Driver.FindElement(By.XPath($"//input[@name='gender'][@value='{user.Gender}']"));
+            GenderField.Click();
         }
 
         internal UltimateQAPage ClickSubmit()

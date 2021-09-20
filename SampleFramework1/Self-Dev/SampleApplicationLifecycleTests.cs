@@ -35,19 +35,37 @@ namespace SampleFramework1
         }
 
         [TestMethod]
-        public void SAL_Test()
+        public void SAL_Sprint3Input_Test1()
         {
+            FillOutPerson("Zeus", "God of Olympus", "male");
+        }
+
+        [TestMethod]
+        public void SAL_Sprint3Input_Test2()
+        {
+            FillOutPerson("Kali", "God of India", "female");
+        }
+
+        [TestMethod]
+        public void SAL_Sprint3Input_Test3()
+        {
+            FillOutPerson("Loki", "God/dess of the Norse", "other");
+        }
+
+
+        private void FillOutPerson(string firstName, string lastName, string gender) 
+        { 
             var appLifecyclePage = new AppLifecyclePage(driver, wait);
             appLifecyclePage.Open();
 
             Assert.IsTrue(appLifecyclePage.IsFirstNameFieldLoaded(), "First Name Field is Not Loaded");
 
-            var user = new User("Zeus", "God of Greece");
+            var user = new User(firstName, lastName, gender);
 
-            appLifecyclePage.FillOutNameFields(user);
+            appLifecyclePage.FillOutUserFields(user);
             var ultimateQAPage = appLifecyclePage.ClickSubmit();
 
-            Assert.IsTrue(ultimateQAPage.IsLoaded(), "UltimateQA Page is not Loaded");
+            Assert.IsTrue(ultimateQAPage.IsLoaded, "UltimateQA Page is not Loaded, the desired element was not found.");
         }
     }
 }

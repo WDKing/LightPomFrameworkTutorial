@@ -9,14 +9,25 @@ using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 namespace SampleFramework1.Self_Dev
 {
-    class UltimateQAPage : WebsiteBasePage
+    internal class UltimateQAPage : WebsiteBasePage
     {
         public UltimateQAPage(IWebDriver driver, WebDriverWait wait) : base(driver, wait) { }
 
-        public bool IsLoaded()
+        public bool IsLoaded
         {
-            Wait.Until(ExpectedConditions.ElementExists(By.XPath("//input[@type='text'][@name='s']"))); 
-            return true;
+            get
+            {
+                try
+                {
+
+                    Wait.Until(ExpectedConditions.ElementExists(By.XPath("//input[@type='text'][@name='s']")));
+                    return true;
+                }
+                catch (NoSuchElementException)
+                {
+                    return false;
+                }
+            }
         }
 
         public string GetUrl()

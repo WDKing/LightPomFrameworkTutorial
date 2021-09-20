@@ -10,11 +10,13 @@ namespace SampleFramework1
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string Gender { get; set; }
 
-        public User(string firstName, string lastName)
+        public User(string firstName, string lastName, string gender)
         {
             FirstName = firstName;
             LastName = lastName;
+            Gender = gender;
         }
     }
 }
