@@ -16,48 +16,76 @@ namespace SampleFramework1
     [TestCategory("SampleApplicationLifecycleTests")]
     public class SampleApplicationLifecycleTests
     {
-        private IWebDriver driver;
-        private Actions actions;
-        private WebDriverWait wait;
+        public IWebDriver Driver { get; set; }
+        public WebDriverWait Wait { get; set; }
+        public Actions Actions { get; set; }
+        internal AppLifecyclePage AppLifecyclePage { get; set; }
 
         [TestInitialize]
         public void SetUp()
         {
-            driver = new ChromeDriver();
-            actions = new Actions(driver);
-            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(6));
+            Driver = new ChromeDriver();
+            Actions = new Actions(Driver);
+            Wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(6));
         }
 
         [TestCleanup]
         public void CleanUp()
         {
-            driver.Close();
-            driver.Quit();
+            Driver.Close();
+            Driver.Quit();
         }
 
         [TestMethod]
-        public void SAL_Sprint3Input_Test1() => FillOutPerson("Zeus", "God of Olympus", User.GenderTypes.male);
+        public void SAL_Sprint3Input_TestUserSubmit1()
+        {
+            AppLifecyclePage = new AppLifecyclePage(Driver, Wait);
+            AppLifecyclePage.GoToPage();
+            AppLifecyclePage.FillOutUserFields(new User("Zeus", "God of Olympus", User.GenderTypes.Male));
+            // TODO    AppLifecyclePage.FillOutEmergencyFields(new User("Kali", "God of India", User.GenderTypes.female));
+            AppLifecyclePage.SubmitUser();
+        }
 
         [TestMethod]
-        public void SAL_Sprint3Input_Test2() => FillOutPerson("Kali", "God of India", User.GenderTypes.female);
+        public void SAL_Sprint3Input_TestUserSubmit2()
+        {
+            AppLifecyclePage = new AppLifecyclePage(Driver, Wait);
+            AppLifecyclePage.GoToPage();
+            AppLifecyclePage.FillOutUserFields(new User("Kali", "God of India", User.GenderTypes.Female));
+            AppLifecyclePage.SubmitUser();
+        }
 
         [TestMethod]
-        public void SAL_Sprint3Input_Test3() => FillOutPerson("Loki", "God/dess of the Norse", User.GenderTypes.other);
-
-
-        private void FillOutPerson(string firstName, string lastName, GenderTypes gender) 
-        { 
-            var appLifecyclePage = new AppLifecyclePage(driver, wait);
-            appLifecyclePage.Open();
-
-            Assert.IsTrue(appLifecyclePage.IsFirstNameFieldLoaded(), "First Name Field is Not Loaded");
-
-            var user = new User(firstName, lastName, gender);
-
-            appLifecyclePage.FillOutUserFields(user);
-            var ultimateQAPage = appLifecyclePage.ClickSubmit();
-
-            Assert.IsTrue(ultimateQAPage.IsLoaded, "UltimateQA Page is not Loaded, the desired element was not found.");
+        public void SAL_Sprint3Input_TestUserSubmit3()
+        {
+            AppLifecyclePage = new AppLifecyclePage(Driver, Wait);
+            AppLifecyclePage.GoToPage();
+            AppLifecyclePage.FillOutUserFields(new User("Loki", "God/dess of the Norse", User.GenderTypes.Other));
+            AppLifecyclePage.SubmitUser();
+        }
+        [TestMethod]
+        public void SAL_Sprint3Input_TestEmergencySubmit1()
+        {
+            AppLifecyclePage = new AppLifecyclePage(Driver, Wait);
+            AppLifecyclePage.GoToPage();
+            AppLifecyclePage.FillOutEmergencyFields(new User("Zeus", "God of Olympus", User.GenderTypes.Male));
+            AppLifecyclePage.SubmitEmergency();
+        }
+        [TestMethod]
+        public void SAL_Sprint3Input_TestEmergencySubmit2()
+        {
+            AppLifecyclePage = new AppLifecyclePage(Driver, Wait);
+            AppLifecyclePage.GoToPage();
+            AppLifecyclePage.FillOutEmergencyFields(new User("Kali", "God of India", User.GenderTypes.Female));
+            AppLifecyclePage.SubmitEmergency();
+        }
+        [TestMethod]
+        public void SAL_Sprint3Input_TestEmergencySubmit3()
+        {
+            AppLifecyclePage = new AppLifecyclePage(Driver, Wait);
+            AppLifecyclePage.GoToPage();
+            AppLifecyclePage.FillOutEmergencyFields(new User("Loki", "God/dess of the Norse", User.GenderTypes.Other));
+            AppLifecyclePage.SubmitEmergency();
         }
     }
 }

@@ -4,9 +4,9 @@
     {
         public enum GenderTypes
         {
-            male,
-            female,
-            other
+            Male, 
+            Female,
+            Other
         }
     }
 }
