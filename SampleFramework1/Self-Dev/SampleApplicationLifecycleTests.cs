@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static SampleFramework1.User;
 
 namespace SampleFramework1
 {
@@ -35,25 +36,16 @@ namespace SampleFramework1
         }
 
         [TestMethod]
-        public void SAL_Sprint3Input_Test1()
-        {
-            FillOutPerson("Zeus", "God of Olympus", "male");
-        }
+        public void SAL_Sprint3Input_Test1() => FillOutPerson("Zeus", "God of Olympus", User.GenderTypes.male);
 
         [TestMethod]
-        public void SAL_Sprint3Input_Test2()
-        {
-            FillOutPerson("Kali", "God of India", "female");
-        }
+        public void SAL_Sprint3Input_Test2() => FillOutPerson("Kali", "God of India", User.GenderTypes.female);
 
         [TestMethod]
-        public void SAL_Sprint3Input_Test3()
-        {
-            FillOutPerson("Loki", "God/dess of the Norse", "other");
-        }
+        public void SAL_Sprint3Input_Test3() => FillOutPerson("Loki", "God/dess of the Norse", User.GenderTypes.other);
 
 
-        private void FillOutPerson(string firstName, string lastName, string gender) 
+        private void FillOutPerson(string firstName, string lastName, GenderTypes gender) 
         { 
             var appLifecyclePage = new AppLifecyclePage(driver, wait);
             appLifecyclePage.Open();
