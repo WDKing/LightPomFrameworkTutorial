@@ -59,6 +59,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Self\Pages\MyHomePage.cs" />
+    <Compile Include="Self\Tests\SearchCapabilityTests.cs" />
     <Compile Include="Pages\BaseApplicationPage.cs" />
     <Compile Include="Tests\BaseTest.cs" />
     <Compile Include="Pages\ContactUsPage.cs" />
