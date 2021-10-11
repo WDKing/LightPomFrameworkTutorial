@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace MyCreatingReports
+namespace MyCreatingReports.Instructor
 {
     [TestClass]
     public static class NamespaceSetup

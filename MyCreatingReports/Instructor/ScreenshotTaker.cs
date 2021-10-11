@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NLog;
 using OpenQA.Selenium;
 
-namespace MyCreatingReports
+namespace MyCreatingReports.Instructor
 {
     public class ScreenshotTaker
     {

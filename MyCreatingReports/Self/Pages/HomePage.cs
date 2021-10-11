@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using AventStack.ExtentReports;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MyCreatingReports.Instructor;
 using NLog;
 using OpenQA.Selenium;
 using System;
@@ -34,10 +36,12 @@ namespace MyCreatingReports.Self.Pages
 
         internal void Open()
         {
-            _logger.Trace("Entered Open() method");
+            Reporter.LogTestStepForBugLogger(Status.Pass, $"Open the web page '{URL}'");
+            //_logger.Trace("Entered Open() method");
             Driver.Navigate().GoToUrl(URL);
             Assert.IsTrue(IsVisible, $"The expected page is not visible. Title observed: {Driver.Title}, Expected Title: {Title}");
-            _logger.Info($"Accessed URL: {URL}");
+            //_logger.Info($"Accessed URL: {URL}");
+
         }
 
         internal void SearchFor(string searchString)
@@ -49,6 +53,18 @@ namespace MyCreatingReports.Self.Pages
             _logger.Info($"Searched for item in search bar: {searchString}");
             Assert.IsTrue(SearchResultsPage.IsVisible, $"The Page does not appear to be loadaed. Title observed: {Driver.Title}, Expected Title: {Title}");
             Assert.IsTrue(SearchResultsPage.ConfirmResultsFound(searchString), $"The results do not appear to display results with the search string: {searchString}.");
+        }
+
+        internal SearchResultsPage Search(string searchString)
+        {
+            _logger.Trace("Entered SearchFor() method.");
+            SearchField.SendKeys(searchString);
+            SearchButton.Click();
+            _logger.Info($"Searched for item in search bar: {searchString}");
+            Assert.IsTrue(SearchResultsPage.IsVisible, $"The Page does not appear to be loadaed. Title observed: {Driver.Title}, Expected Title: {Title}");
+            Assert.IsTrue(SearchResultsPage.ConfirmResultsFound(searchString), $"The results do not appear to display results with the search string: {searchString}.");
+
+            return new SearchResultsPage(Driver);
         }
     }
 }

@@ -19,7 +19,6 @@ namespace CreatingReports.Tests
             homePage.Slider.ClickNextButton();
             var newImage = homePage.Slider.CurrentImage;
             homePage.Slider.AssertThatImageChanged(currentImage, newImage);
-
         }
     }
 }

@@ -5,13 +5,13 @@ using AventStack.ExtentReports.Reporter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NLog;
 
-namespace MyCreatingReports
+namespace MyCreatingReports.Instructor
 {
     public static class Reporter
     {
         private static readonly Logger TheLogger = LogManager.GetCurrentClassLogger();
         private static ExtentReports ReportManager { get; set; }
-        private static string ApplicationDebuggingFolder => "c://temp/CreatingReports";
+        private static string ApplicationDebuggingFolder => "c://temp/MyCreatingReports";
 
         private static string HtmlReportFullPath { get; set; }
 
@@ -24,7 +24,7 @@ namespace MyCreatingReports
         public static void StartReporter()
         {
             TheLogger.Trace("Starting a one time setup for the entire" +
-                            " .CreatingReports namespace." +
+                            " .MyCreatingReports namespace." +
                             "Going to initialize the reporter next...");
             CreateReportDirectory();
             var htmlReporter = new ExtentHtmlReporter(HtmlReportFullPath);

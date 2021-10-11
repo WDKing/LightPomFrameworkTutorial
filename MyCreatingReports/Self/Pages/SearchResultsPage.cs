@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using MyCreatingReports.Instructor;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -33,5 +34,10 @@ namespace MyCreatingReports.Self.Pages
 
             return false;
         }
-    }
+
+		internal bool ConfirmResultsFound(Item item)
+		{
+            return ConfirmResultsFound(item.ToString());
+		}
+	}
 }
